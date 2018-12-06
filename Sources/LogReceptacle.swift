@@ -64,7 +64,7 @@ public final class LogReceptacle
         syncConfigs.forEach{ logEntry(entry, usingConfiguration: $0) }
     }
 
-    private lazy var acceptQueue: DispatchQueue = DispatchQueue(label: "LogReceptacle.acceptQueue", attributes: [])
+    private var acceptQueue: DispatchQueue = DispatchQueue(label: "LogReceptacle.acceptQueue", attributes: [])
 
     private func logEntry(_ entry: LogEntry, usingConfiguration config: LogConfiguration)
     {
