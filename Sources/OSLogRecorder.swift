@@ -64,13 +64,13 @@ public struct OSLogRecorder: LogRecorder
      - parameter queue: The `DispatchQueue` to use for the recorder. If `nil`,
      a new queue will be created.
      */
-    public init?(formatters: [LogFormatter], subsystem: String = "", logTypeTranslator: OSLogTypeTranslator = .default, queue: DispatchQueue? = nil)
+    public init?(formatters: [LogFormatter], subsystem: String = "", category: String = "CleanroomLogger", logTypeTranslator: OSLogTypeTranslator = .default, queue: DispatchQueue? = nil)
     {
         guard #available(iOS 10.0, macOS 10.12, tvOS 10.0, watchOS 3.0, *) else {
             return nil
         }
         
-        self.log = OSLog(subsystem: subsystem, category: "CleanroomLogger")
+        self.log = OSLog(subsystem: subsystem, category: category)
         self.queue = queue != nil ? queue! : DispatchQueue(label: String(describing: type(of: self)), attributes: [])
         self.formatters = formatters
         self.logTypeTranslator = logTypeTranslator
